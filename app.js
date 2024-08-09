@@ -1,7 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import { router } from './src/router/app.routes.js';
+import { taskrouter } from './src/router/app.routes.js';
 
 // Inicializaciones
 const app = express();
@@ -13,7 +13,7 @@ app.use(morgan('dev'));
 app.use(cors());
 
 // Rutas
-app.use('/', router);
+app.use('/', taskrouter);
 
 // Escuchar puerto
 app.listen(PORT, () => {

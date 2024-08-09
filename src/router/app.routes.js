@@ -1,13 +1,13 @@
 import { Router } from 'express';
-import { ctrl } from '../controller/app.controller.js';
+import { crearTarea,eliminarTarea,editarTarea,obtenerTareaId,obtenerTareas} from '../controller/app.controller.js';
 
 
-const router = Router();
+const taskrouter = Router();
 
-router.get('/tasks', ctrl.obtenerTareas);
-router.get ('/tasks/:id', ctrl.obtenerTareaId);
-router.post('/tasks', ctrl.crearTarea);
-router.put('/tasks/:id', ctrl.editarTarea);
-router.delete('/tasks/:id', ctrl.eliminarTarea);
+taskrouter.get('/tasks', obtenerTareas);
+taskrouter.get ('/tasks/:id', obtenerTareaId);
+taskrouter.post('/tasks', crearTarea);
+taskrouter.put('/tasks/:id', editarTarea);
+taskrouter.delete('/tasks/:id', eliminarTarea);
 
-export { router };
+export { taskrouter };

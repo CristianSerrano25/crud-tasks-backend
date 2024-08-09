@@ -1,8 +1,6 @@
 import { newConnection } from "../dataBase/dataBase.js"; // Importa la función newConnection desde el archivo dataBase.js
 
-const ctrl = {};
-
-ctrl.obtenerTareas = async (req, res) => {
+export const obtenerTareas = async (req, res) => {
     try {
         const connection = await newConnection();// Establece una conexión con la base de datos
         const [results] = await connection.query("SELECT * FROM tasks");//Realiza una consulta para obtener las tareas
@@ -13,7 +11,7 @@ ctrl.obtenerTareas = async (req, res) => {
 };
 
 // Define el método crearTarea para crear una nueva tarea
-ctrl.crearTarea = async (req, res) => {
+export const crearTarea = async (req, res) => {
     // Extrae los campos title, description e isComplete del cuerpo de la solicitud
     const { title, description, isComplete } = req.body;
     // Valida que los campos no estén vacíos, que title no exceda los 255 caracteres y que isComplete sea un booleano
@@ -40,7 +38,7 @@ ctrl.crearTarea = async (req, res) => {
     }
 };
 
-ctrl.obtenerTareaId = async (req, res) => {
+export const obtenerTareaId = async (req, res) => {
     const id = req.params.id;
     try {
         const connection = await newConnection();// Establece una nueva conexión a la base de datos
@@ -57,7 +55,7 @@ ctrl.obtenerTareaId = async (req, res) => {
     }
 };
 
-ctrl.editarTarea = async (req, res) => {
+export const editarTarea = async (req, res) => {
     // Extrae el ID de la tarea de los parámetros de la solicitud
     const id = req.params.id;
     const { title, description, isComplete } = req.body;
@@ -76,7 +74,7 @@ ctrl.editarTarea = async (req, res) => {
     }
 };
 
-ctrl.eliminarTarea = async (req, res) => {
+export const eliminarTarea = async (req, res) => {
     // Extrae el ID de la tarea de los parámetros de la solicitud
     const id = req.params.id;
     try {
@@ -93,6 +91,3 @@ ctrl.eliminarTarea = async (req, res) => {
         return res.status(500).send("Error al intentar eliminar tarea");
     }
 };
-
-export { ctrl };
-
